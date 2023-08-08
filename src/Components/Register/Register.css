@@ -1,0 +1,54 @@
+/* Register.css */
+
+/* Container */
+.register-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+/* Form */
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-form label {
+  margin-bottom: 5px;
+}
+
+.register-form input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.register-form button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Checkbox */
+.register-form .sms-label {
+  display: flex;
+  align-items: center;
+}
+
+.register-form input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/* Styling for errors (customize as needed) */
+.error {
+  color: #ff0000;
+  margin-top: 5px;
+}
