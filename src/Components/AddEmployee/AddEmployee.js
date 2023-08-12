@@ -1,36 +1,125 @@
-import React from 'react';
-import "./AddEmployee.css"
-import { Nav } from '../Nav/Nav';
-const AddEmployee = () => {
+import React, { useEffect, useState } from "react";
+import "./styles.css";
+
+export default function App() {
+  const [employee, setEmployee] = useState({
+    name: "",
+    occupation: "",
+    callMobile: "",
+    callOffice: "",
+    SMS: "",
+    email: "",
+    image: ""
+  });
+
+  const [records, setRecords] = useState([]);
+
+  const updated = (e) => {
+    const { name, value } = e.target;
+    setEmployee((prevEmployee) => ({
+      ...prevEmployee,
+      [name]: value
+    }));
+  };
+
+  const register = (e) => {
+    e.preventDefault();
+    console.log(employee);
+
+    const updatedRecords = [...records, employee];
+    setRecords(updatedRecords);
+    localStorage.setItem("records", JSON.stringify(updatedRecords));
+
+    // Clear input fields after submitting
+    setEmployee({
+      name: "",
+      occupation: "",
+      callMobile: "",
+      callOffice: "",
+      sms: "",
+      email: "",
+      image: ""
+    });
+  };
+
+  useEffect(() => {
+    const savedRecords = JSON.parse(localStorage.getItem("records")) || [];
+    setRecords(savedRecords);
+  }, []);
+
   return (
-    <div> 
-     <Nav/>
-    <form>
-      <label htmlFor="name">Name:</label>
-      <input type="text" id="name" required placeholder='name'/><br /><br />
-
-      <label htmlFor="occupation">Occupation:</label>
-      <input type="text" id="occupation" required placeholder='Occupation' /><br /><br />
-
-      <label htmlFor="cellMobile">Cell Mobile:</label>
-      <input type="tel" id="cellMobile" required placeholder='cellMobile'/><br /><br />
-
-      <label htmlFor="cellOffice">Cell Office:</label>
-      <input type="tel" id="cellOffice" placeholder='cellOffice'/><br /><br />
-
-      <label htmlFor="sms">SMS:</label>
-      <input type="text" id="sms" placeholder='sms'/><br /><br />
-
-      <label htmlFor="email">Email:</label>
-      <input type="email" id="email" required placeholder='email'/><br /><br />
-
-      <label htmlFor="imageUrl">Image URL:</label>
-      <input type="url" id="imageUrl" placeholder='Image'/><br /><br />
-
-      <button type="submit" id="addEmployeeButton">Submit</button>
-    </form>
+    <div className="App">
+      <form>
+        <div>
+          <h2>Add Employee</h2>
+        </div>
+        <div>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            onChange={updated}
+            value={employee.name}
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="Occupation"
+            placeholder="occupation"
+            onChange={updated}
+            value={employee.occupation}
+          />
+        </div>
+        <div>
+          <input
+            type="number"
+            name="callMobile"
+            placeholder="callMobile"
+            onChange={updated}
+            value={employee.callMobile}
+          />
+        </div>
+        <div>
+          <input
+            type="number"
+            name="callOffice"
+            placeholder="callOffice"
+            onChange={updated}
+            value={employee.callOffice}
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="SMS"
+            placeholder="sms"
+            onChange={updated}
+            value={employee.sms}
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="Email"
+            placeholder="Email"
+            onChange={updated}
+            value={employee.email}
+          />
+        </div>
+        <div>
+          <input
+            type="png"
+            name="image"
+            placeholder="image"
+            onChange={updated}
+            value={employee.image}
+          />
+        </div>
+        <div>
+          <button onClick={register}>Add Employee</button>
+        </div>
+      </form>
     </div>
   );
 }
-
-export default AddEmployee;
