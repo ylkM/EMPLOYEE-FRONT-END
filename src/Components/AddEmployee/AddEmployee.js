@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./styles.css";
+import "./AddEmployee.css";
 
-export default function App() {
+export default function AddEmployee() {
   const [employee, setEmployee] = useState({
     name: "",
     occupation: "",
