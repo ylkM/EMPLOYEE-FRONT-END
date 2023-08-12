@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, {createContext ,useState } from "react";
 import { EmployeesInfo } from "./Components/ContextFile/EmployeeInfo";
- export const EmployeeContext =React.createContext(); //  export to use it 
+ export const EmployeeContext =createContext(); //  export to use it 
 
 export const ContextProvider =(props)=>{
  const[EmployeeInfo, setEmployeeInfo]= useState({EmployeesInfo})

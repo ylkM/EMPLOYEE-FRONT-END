@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
-import {useContext} from "react"
+import React, { useContext, useState } from 'react'
+
 import { EmployeeContext } from '../../EmployeeContext'
 
 const EmployeeDetail = () => {
-  const {EmployeeInfo, setEmployeeInfo}= useState(EmployeeContext)
+const {EmployeeInfo, setEmployeeInfo}= useContext(EmployeeContext)
   return (
     <div>
+      <h2>Employee Detail</h2>
       {EmployeeInfo.map(({name,occupation,image,callMobile,callOffice, sms, email})=>{
         return (
           <div>

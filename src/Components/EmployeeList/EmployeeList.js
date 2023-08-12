@@ -4,8 +4,8 @@ import AddEmployee from '../AddEmployee/AddEmployee'
 const EmployeeList = () => {
   return (
     <div>
-    { /* <EmployeeDetail/>*/}
-      <AddEmployee/>
+     <EmployeeDetail/>
+     {/* <AddEmployee/>*/} 
     </div>
   )
 }
