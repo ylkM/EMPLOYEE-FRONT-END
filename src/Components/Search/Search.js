@@ -2,17 +2,19 @@ import { useState } from 'react';
 
 export const SearchBar = ({ onSearch }) => {
   const [searchEmployee, setSearchEmployee] = useState('');
-  const isDisplayButton =value.length>0
+  const isDisplayButton = searchEmployee.length > 0;
 
   const handleInputChange = (event) => {
     setSearchEmployee(event.target.value);
   };
 
   const handleClear = () => {
-    setSearchEmployee("")
+    setSearchEmployee('');
   };
 
-  
+  const handleSearch = () => {
+    onSearch(searchEmployee);
+  };
 
   return (
     <div className="search-bar">
@@ -21,19 +23,9 @@ export const SearchBar = ({ onSearch }) => {
         placeholder="Search..."
         value={searchEmployee}
         onChange={handleInputChange}
-        
       />
-      <button onChange={handleSearch}>Search</button>
-      {isDisplayButton &&
-      <button onClick={handleClear}>clear</button>}
+      <button onClick={handleSearch}>Search</button>
+      {isDisplayButton && <button onClick={handleClear}>Clear</button>}
     </div>
-
   );
 };
-
-/* Note : 
-to filter out using name 
-// const filterdName =employeesName.filter((employeename)=>{
-  //return employeename.(objProperty).includes(searchEmployee)
-  then filterdName.map(employeename)=> use map method 
-})*/

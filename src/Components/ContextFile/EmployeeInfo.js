@@ -22,10 +22,10 @@ export const EmployeesInfo = [
   {
     name: "Drake Mike",
     occupation: "Lead Engineer",
-    image:
+    imageURL:
       "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=388&q=80",
-      callOffice: "837482392370",
-      callMobile: "1234567899",
+      cellOffice: "837482392370",
+      cellMobile: "1234567899",
       sms: "0123456799",
       email: "drake@gmail.com",
   },
