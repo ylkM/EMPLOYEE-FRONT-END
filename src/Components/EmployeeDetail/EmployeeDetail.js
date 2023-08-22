@@ -7,14 +7,14 @@ const {EmployeeInfo, setEmployeeInfo}= useContext(EmployeeContext)
   return (
     <div>
       <h2>Employee Detail</h2>
-      {EmployeeInfo.map(({name,occupation,image,callMobile,callOffice, sms, email})=>{
+      {EmployeeInfo.map(({name,occupation,imageURL,cellMobile,cellOffice, sms, email})=>{
         return (
           <div>
-            <img src={image} alt='image'/>
+            <img src={imageURL} alt='image'/>
             {name},
             {occupation}
-            {callMobile}
-            {callOffice}
+            {cellMobile}
+            {cellOffice}
             {sms}
             {email}
 
@@ -28,3 +28,4 @@ const {EmployeeInfo, setEmployeeInfo}= useContext(EmployeeContext)
 }
 
 export default EmployeeDetail
+// THIS IS SUPPOSED TO BE IMPLOYEELIST ITEM COMP, INSTEAD 

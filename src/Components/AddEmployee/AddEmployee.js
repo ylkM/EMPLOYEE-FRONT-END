@@ -1,125 +1,141 @@
-import React, { useEffect, useState } from "react";
-import "./AddEmployee.css";
-
+import React, { useState } from "react";
+//import "./AddEmployee.css";
+import styled from "styled-components";
+const StyledInput = styled.input`
+padding: 5px 10px;S
+line-height:2;
+border:none;
+border :1px solid #333;
+border-radius: 4px;
+`;
+const StyledButton = styled.button`
+padding: 5px 10px;S
+line-height:2;
+border:none;
+border :1px solid #333;
+border-radius: 4px;
+color:black;
+fontsize:16px;
+backgroundColor: transparent;
+transition: all ease-in-out 0.4s;
+cursor:pointer;
+&:hover{
+  color: white;
+  background-color:#2196f3
+}
+`;
 export default function AddEmployee() {
   const [employee, setEmployee] = useState({
     name: "",
     occupation: "",
-    callMobile: "",
-    callOffice: "",
-    SMS: "",
+    cellMobile: "",
+    cellOffice: "",
+    sms: "",
     email: "",
-    image: ""
+    imageURL: "",
   });
 
-  const [records, setRecords] = useState([]);
-
-  const updated = (e) => {
-    const { name, value } = e.target;
-    setEmployee((prevEmployee) => ({
-      ...prevEmployee,
-      [name]: value
+  const handleChange = (e) => {
+    setEmployee((em) => ({
+      ...em,
+      [e.target.name]: e.target.value,
     }));
   };
-
-  const register = (e) => {
+  //POST employees data to mongodb 
+    const requestURL = "http://localhost:3000/api/employees/employees";
+    async function addEmployee() {
+      try {
+        const response = await axios.post(requestURL,employee);
+        //const data = await response.json()
+      } catch (error) {
+        console.error(error);
+      }}
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(employee);
-
-    const updatedRecords = [...records, employee];
-    setRecords(updatedRecords);
-    localStorage.setItem("records", JSON.stringify(updatedRecords));
-
+    addEmployee()
     // Clear input fields after submitting
     setEmployee({
       name: "",
       occupation: "",
-      callMobile: "",
-      callOffice: "",
+      cellMobile: "",
+      cellOffice: "",
       sms: "",
       email: "",
-      image: ""
+      imageURL: "",
     });
   };
-
-  useEffect(() => {
-    const savedRecords = JSON.parse(localStorage.getItem("records")) || [];
-    setRecords(savedRecords);
-  }, []);
-
   return (
-    <div className="App">
-      <form>
-        <div>
-          <h2>Add Employee</h2>
-        </div>
-        <div>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            onChange={updated}
-            value={employee.name}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            name="Occupation"
-            placeholder="occupation"
-            onChange={updated}
-            value={employee.occupation}
-          />
-        </div>
-        <div>
-          <input
-            type="number"
-            name="callMobile"
-            placeholder="callMobile"
-            onChange={updated}
-            value={employee.callMobile}
-          />
-        </div>
-        <div>
-          <input
-            type="number"
-            name="callOffice"
-            placeholder="callOffice"
-            onChange={updated}
-            value={employee.callOffice}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            name="SMS"
-            placeholder="sms"
-            onChange={updated}
-            value={employee.sms}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            name="Email"
-            placeholder="Email"
-            onChange={updated}
-            value={employee.email}
-          />
-        </div>
-        <div>
-          <input
-            type="png"
-            name="image"
-            placeholder="image"
-            onChange={updated}
-            value={employee.image}
-          />
-        </div>
-        <div>
-          <button onClick={register}>Add Employee</button>
-        </div>
+    <>
+      <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>
+        Add Employee
+      </h2>
+      <form
+        action=""
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          maxWidth: "300px",
+          margin: "0 auto",
+        }}
+        onSubmit={handleSubmit}
+      >
+        <StyledInput
+          type="text"
+          name="name"
+          placeholder="Name"
+          onChange={handleChange}
+          value={employee.name}
+        />
+
+        <StyledInput
+          type="text"
+          name="occupation"
+          placeholder="occupation"
+          onChange={handleChange}
+          value={employee.occupation}
+        />
+
+        <StyledInput
+          type="number"
+          name="cellMobile"
+          placeholder="cellMobile"
+          onChange={handleChange}
+          value={employee.cellMobile}
+        />
+
+        <StyledInput
+          type="number"
+          name="cellOffice"
+          placeholder="cellOffice"
+          onChange={handleChange}
+          value={employee.cellOffice}
+        />
+
+        <StyledInput
+          type="text"
+          name="sms"
+          placeholder="sms"
+          onChange={handleChange}
+          value={employee.sms}
+        />
+
+        <StyledInput
+          type="text"
+          name="email"
+          placeholder="email"
+          onChange={handleChange}
+        />
+
+        <StyledInput
+          type="pnp"
+          name="imageURL"
+          placeholder="image"
+          onChange={handleChange}
+        />
+
+        <StyledButton>submit</StyledButton>
       </form>
-    </div>
+    </>
   );
 }
