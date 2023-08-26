@@ -6,7 +6,7 @@ import Employee from './Components/Employee/Employee';
 import EmployeeList from './Components/EmployeeList/EmployeeList';
 
 import LogOut from './Components/LogOut';
-import { Nav } from './Components/Nav/Nav';
+import { NavBar } from './Components/Nav/Nav';
 import Search from './Components/Search/Search';
 import Signup from './Components/Signup/Signup';
 import Wrapper from './Components/Wrapper/Wrapper';
@@ -21,7 +21,7 @@ function App() {
     
     <Wrapper className="App" >
       <ContextProvider>
-      <Nav/>
+      <NavBar/>
       <Routes>
         <Route path='/' element={<Home/>}> 
         <Route path='/login' element ={<Login/>}/>
