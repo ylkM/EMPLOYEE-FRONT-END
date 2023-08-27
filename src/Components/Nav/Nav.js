@@ -18,9 +18,11 @@ import {
   Divider // Add this import for Divider
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-const styledNavLink =styled(NavLink)`
-color : #ffffff
-text-decoration:none
+const StyledNavLink =styled(NavLink)`
+color : #ffffff;
+text-decoration:none;
+color :#333;
+text-align: center:
 `
 const drawerWidth = 240;
 const navItems = [
@@ -51,19 +53,19 @@ function NavBar(props) {
   };
 
   const drawer = (
-    <Box sx={{ textAlign: "center" }}>
+    <Box  onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h5" sx={{ my: 2 }}>
         Employee App
       </Typography>
-      <Divider /> {/* Use Divider component here */}
+      <Divider /> 
       <List>
         {navItems.map((item) => (
           <ListItem key={item.key} disablePadding>
             <ListItemButton sx={{textAlign:"center"}}>
-             <styledNavLink to={item.path}
-             onClick={handleDrawerToggle} variant="text">
+             <StyledNavLin to={item.path}
+              variant="text">
               <ListItemText primary={item.key} />
-            </styledNavLink> 
+            </StyledNavLin> 
             </ListItemButton>
             
           </ListItem>
