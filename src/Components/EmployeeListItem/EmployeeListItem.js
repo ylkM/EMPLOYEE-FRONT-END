@@ -1,32 +1,46 @@
-import React from 'react'
-
-import React, { useContext, useState } from 'react'
-
-import { EmployeeContext } from '../../EmployeeContext'
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { EmployeeContext } from '../../EmployeeContext';
+import styled from 'styled-components';
+import { Paper } from '@mui/material';
+import Box from '@mui/material'; // Removed duplicate import
+// Removed duplicate "styled-components" import
 
 const EmployeeListItem = () => {
-const {EmployeeInfo, setEmployeeInfo}= useContext(EmployeeContext)
+  const { EmployeeInfo } = useContext(EmployeeContext); // Removed unnecessary "setEmployeeInfo"
+
   return (
-    <div>
-      <h2>Employee Detail</h2>
-      {EmployeeInfo.map(({name,occupation,imageURL,cellMobile,cellOffice, sms, email})=>{
-        return (
+    <>
+      {EmployeeInfo.map(({ name, occupation, imageURL, cellMobile, cellOffice, sms, email }, index) => (
+        <StyledEmployeeListItem key={index} elevation={6}>
+          <img style={StyledImage} src={imageURL} alt="person" /> {/* Fixed image variable */}
           <div>
-            <img src={imageURL} alt='image'/>
-            {name},
-            {occupation}
-            {cellMobile}
-            {cellOffice}
-            {sms}
-            {email}
-
+            <h4>{name}</h4> {/* Removed unnecessary inline style */}
+            <p>{occupation}</p>
+            <p>{cellMobile}</p>
+            <p>{cellOffice}</p>
+            <p>{sms}</p>
+            <p>{email}</p>
           </div>
-          
+        </StyledEmployeeListItem>
+      ))}
+    </>
+  );
+};
 
-        )
-      })}
-    </div>
-  )
-}
+const StyledEmployeeListItem = styled(Paper)`
+  display: flex; /* Removed unnecessary quotes */
+  align-items: center;
+  gap: 10px;
+  padding: 0.5rem;
+  width: 50%;
+  margin-bottom: 0.5rem;
+`;
 
-export default EmployeeListItem
+const StyledImage = {
+  width: '50px',
+  height: '50px',
+  borderRadius: '50%',
+};
+
+export default EmployeeListItem;

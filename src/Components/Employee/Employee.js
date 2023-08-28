@@ -1,8 +1,9 @@
 import React from 'react'
+import HomePage from '../../HomePage/HomePage'
 
-function Employee() {
+function Employee(props) {
   return (
-    <div>Employee</div>
+    <div><HomePage employeesData ={props.employeesData}/></div>
   )
 }
 

@@ -1,11 +1,10 @@
 import React from 'react'
-import EmployeeDetail from '../EmployeeDetail/EmployeeDetail'
-import AddEmployee from '../AddEmployee/AddEmployee'
+import EmployeeListItem from '../EmployeeListItem/EmployeeListItem'
+
 const EmployeeList = () => {
   return (
     <div>
-     <EmployeeDetail/>
-     {/* <AddEmployee/>*/} 
+     <EmployeeListItem/>
     </div>
   )
 }
