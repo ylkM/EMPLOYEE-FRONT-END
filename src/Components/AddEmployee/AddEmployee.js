@@ -1,29 +1,30 @@
 import React, { useState } from "react";
-//import "./AddEmployee.css";
 import styled from "styled-components";
+import axios from "axios"; // Don't forget to import axios
+
 const StyledInput = styled.input`
-padding: 5px 10px;S
-line-height:2;
-border:none;
-border :1px solid #333;
-border-radius: 4px;
+  padding: 5px 10px;
+  line-height: 2;
+  border: 1px solid #333;
+  border-radius: 4px;
 `;
+
 const StyledButton = styled.button`
-padding: 5px 10px;S
-line-height:2;
-border:none;
-border :1px solid #333;
-border-radius: 4px;
-color:black;
-fontsize:16px;
-backgroundColor: transparent;
-transition: all ease-in-out 0.4s;
-cursor:pointer;
-&:hover{
-  color: white;
-  background-color:#2196f3
-}
+  padding: 5px 10px;
+  line-height: 2;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: black;
+  font-size: 16px; // Corrected property name
+  background-color: transparent;
+  transition: all ease-in-out 0.4s;
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background-color: #2196f3;
+  }
 `;
+
 export default function AddEmployee() {
   const [employee, setEmployee] = useState({
     name: "",
@@ -41,19 +42,20 @@ export default function AddEmployee() {
       [e.target.name]: e.target.value,
     }));
   };
-  //POST employees data to mongodb 
-    const requestURL = "http://localhost:3000/api/employees/employees";
-    async function addEmployee() {
-      try {
-        const response = await axios.post(requestURL,employee);
-        //const data = await response.json()
-      } catch (error) {
-        console.error(error);
-      }}
+
+  const requestURL = "http://localhost:3000/api/employees/employees";
+  async function addEmployee() {
+    try {
+      const response = await axios.post(requestURL, employee);
+      // Handle the response if needed
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    addEmployee()
-    // Clear input fields after submitting
+    addEmployee();
     setEmployee({
       name: "",
       occupation: "",
@@ -64,13 +66,13 @@ export default function AddEmployee() {
       imageURL: "",
     });
   };
+
   return (
     <>
       <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>
         Add Employee
       </h2>
       <form
-        action=""
         style={{
           display: "flex",
           flexDirection: "column",
@@ -80,61 +82,7 @@ export default function AddEmployee() {
         }}
         onSubmit={handleSubmit}
       >
-        <StyledInput
-          type="text"
-          name="name"
-          placeholder="Name"
-          onChange={handleChange}
-          value={employee.name}
-        />
-
-        <StyledInput
-          type="text"
-          name="occupation"
-          placeholder="occupation"
-          onChange={handleChange}
-          value={employee.occupation}
-        />
-
-        <StyledInput
-          type="number"
-          name="cellMobile"
-          placeholder="cellMobile"
-          onChange={handleChange}
-          value={employee.cellMobile}
-        />
-
-        <StyledInput
-          type="number"
-          name="cellOffice"
-          placeholder="cellOffice"
-          onChange={handleChange}
-          value={employee.cellOffice}
-        />
-
-        <StyledInput
-          type="text"
-          name="sms"
-          placeholder="sms"
-          onChange={handleChange}
-          value={employee.sms}
-        />
-
-        <StyledInput
-          type="text"
-          name="email"
-          placeholder="email"
-          onChange={handleChange}
-        />
-
-        <StyledInput
-          type="pnp"
-          name="imageURL"
-          placeholder="image"
-          onChange={handleChange}
-        />
-
-        <StyledButton>submit</StyledButton>
+        <StyledButton type="submit">submit</StyledButton>
       </form>
     </>
   );
